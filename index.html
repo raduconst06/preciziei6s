@@ -491,7 +491,7 @@ body.home .hero .wrap{min-height:150px}
     var S = d[1].filter(function(r){ return r[1] !== ""; });
     var A = d[2].filter(function(r){ return r[0] !== "" && r[1] !== ""; }).map(function(r){ return {d: parseD(r[0]), s: r[0], v: parseFloat(r[1]) || 0}; }).filter(function(a){ return a.d; });
     var B = d[3].filter(function(r){ return r[0] !== ""; });
-    var H = d[4].filter(function(r){ return r[2] !== ""; });
+    var H = d[4].filter(function(r){ return r[2] !== ""; }).reverse();
     $("loading").classList.add("hide");
     var last = H.map(function(h){ return parseD(h[0]); }).filter(Boolean).sort(function(a,b){ return b-a; })[0];
     LASTD = last;
