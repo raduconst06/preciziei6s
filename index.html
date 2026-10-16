@@ -710,7 +710,7 @@ body.home .hero .wrap{min-height:150px}
   function tlItem(h){
     var d = parseD(h[0]), c = CATC[h[1]] || "#64748b";
     var isNew = d && LASTD && (LASTD - d) < 2*864e5;
-    return '<li><div class="dt">'+esc((h[0]||"").slice(0,5))+(d?'<small>'+WD[d.getDay()]+'</small>':"")+'</div><span class="pt" style="background:'+c+'"></span><div><div class="cat" style="color:'+c+'">'+esc(h[1])+'</div><div class="ev">'+esc(h[2])+'</div>'+(h[4]?'<div class="lnk">Legat de: '+esc(h[4])+'</div>':"")+'</div></li>';
+    return '<li><div class="dt">'+esc((h[0]||"").slice(0,5))+(d?'<small>'+WD[d.getDay()]+'</small>':"")+'</div><span class="pt" style="background:'+c+'"></span><div><div class="cat" style="color:'+c+'">'+esc(h[1])+'</div><div class="ev">'+esc(h[2])+(isNew?'<span class="newb">NOU</span>':'')+'</div>'+(h[4]?'<div class="lnk">Legat de: '+esc(h[4])+'</div>':"")+'</div></li>';
   }
 })();
 </script>
