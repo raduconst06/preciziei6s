@@ -56,7 +56,7 @@ main{margin-top:-76px;position:relative;z-index:2;padding-bottom:56px}
 .g2{grid-template-columns:1fr 1fr}
 .g21{grid-template-columns:1.5fr 1fr}
 @media(max-width:960px){.g4{grid-template-columns:repeat(2,1fr)}.g3,.g2,.g21{grid-template-columns:1fr}}
-@media(max-width:520px){.g4{grid-template-columns:1fr}}
+@media(max-width:520px){.g4{grid-template-columns:1fr 1fr;gap:10px}.kpi{min-height:0;padding:14px;gap:4px}.kpi .num{font-size:28px}.kpi .row svg,.hil,.kpi .hbar{display:none}.kpi .lbl{font-size:12px}.kpi .ic{display:none}.kpi .foot{font-size:11.5px}}
 .card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:22px;border:1px solid rgba(230,234,242,.8);position:relative}
 .card h2{font-size:18px;margin:0 0 4px;letter-spacing:-.01em}
 .card .sub{color:var(--muted);font-size:13px;margin:0 0 16px}
@@ -212,6 +212,16 @@ a.doc:hover{border-color:#c7d2fe;transform:translateY(-2px);box-shadow:var(--sh)
 .doc.miss .dt2{color:var(--ink2)}
 .dbtn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;padding:10px 16px;border-radius:12px;font-weight:600;font-size:14px;text-decoration:none}
 .dbtn:hover{text-decoration:none;opacity:.92}
+.hdocs{display:grid;gap:8px;margin-top:10px}
+.hdocs a,.hdocs div{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:#f7f9fc;font-size:13.5px;color:var(--ink);font-weight:500;text-decoration:none}
+.hdocs a:hover{background:#eef3ff;text-decoration:none}
+.hdocs span.e{font-size:16px}
+.hdocs .x{margin-left:auto;color:var(--blue);font-weight:600;font-size:12px}
+.news .tl li{padding:12px 0}
+.newb{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;color:#fff;background:linear-gradient(135deg,#f43f5e,#fb923c);padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:middle}
+body.home .hero{padding:26px 0 92px}
+body.home .hero h1{font-size:34px;margin:12px 0 6px}
+body.home .hero .wrap{min-height:150px}
 .footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:34px}
 .btn{display:inline-flex;align-items:center;gap:6px;font:600 13px Inter,sans-serif;color:var(--blue);background:#eef3ff;border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
 .badge{font-size:11px;font-weight:700;color:#fff;background:var(--hi);border-radius:999px;padding:2px 8px}
@@ -273,11 +283,29 @@ a.doc:hover{border-color:#c7d2fe;transform:translateY(-2px);box-shadow:var(--sh)
       </div>
     </div>
 
-    <div class="card alert sec">
-      <div class="ic">!</div>
-      <div>
-        <h3>Important acum: acordurile bancare pentru bransament</h3>
-        <p>Proprietarii cu credit ipotecar care nu au depus inca acordul bancii sunt rugati sa il depuna cat mai repede. Fara toate acordurile, Primaria nu emite autorizatia, iar fiecare acord expira dupa 60 de zile. <button type="button" class="lk" data-go="bransament">Vezi procedura pe banci &rarr;</button></p>
+    <div class="grid g21 sec">
+      <div class="card news">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><h2>📰 Ultimele noutati</h2><button type="button" class="lk" data-go="istoric">Tot istoricul &rarr;</button></div>
+        <p class="sub">Ce s-a intamplat recent in bloc</p>
+        <ul class="tl" id="home-tl"></ul>
+      </div>
+      <div class="grid" style="gap:18px;align-content:start">
+        <div class="card alert">
+          <div class="ic">!</div>
+          <div>
+            <h3>Important acum</h3>
+            <p>Proprietarii cu credit ipotecar care nu au depus acordul bancii pentru bransament sunt rugati sa il depuna cat mai repede. Acordul expira dupa 60 de zile.</p>
+            <button type="button" class="lk" data-go="bransament" style="margin-top:6px">Vezi procedura pe banci &rarr;</button>
+          </div>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><h2>⚙️ In lucru acum</h2><button type="button" class="lk" data-go="probleme">Toate &rarr;</button></div>
+          <div id="home-wip"></div>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><h2>📁 Documente</h2><button type="button" class="lk" data-go="documente">Toate &rarr;</button></div>
+          <div id="home-docs" class="hdocs"></div>
+        </div>
       </div>
     </div>
 
@@ -291,21 +319,6 @@ a.doc:hover{border-color:#c7d2fe;transform:translateY(-2px);box-shadow:var(--sh)
         <h2>Problemele deschise, pe teme</h2>
         <p class="sub">Apasa pe o tema ca sa vezi detaliile</p>
         <div class="hbar" id="t-bars"></div>
-      </div>
-    </div>
-
-    <div class="grid g21 sec">
-      <div class="card">
-        <h2>Ultimele noutati</h2>
-        <p class="sub">Cele mai recente evenimente din bloc</p>
-        <ul class="tl" id="home-tl"></ul>
-        <div style="margin-top:12px"><button type="button" class="lk" data-go="istoric">Tot istoricul &rarr;</button></div>
-      </div>
-      <div class="card">
-        <h2>In lucru acum</h2>
-        <p class="sub">Ce se misca in acest moment</p>
-        <div id="home-wip" class="grid" style="gap:0"></div>
-        <div style="margin-top:12px"><button type="button" class="lk" data-go="probleme">Toate problemele &rarr;</button></div>
       </div>
     </div>
 
@@ -427,7 +440,7 @@ a.doc:hover{border-color:#c7d2fe;transform:translateY(-2px);box-shadow:var(--sh)
   var TH = {"Apa si bransament":["💧","#0ea5e9"],"Asociatie si administrare":["🏛️","#7c3aed"],"Gunoi si igiena":["🗑️","#16a34a"],"Acces si securitate":["🔐","#2563eb"],"Lift si accesibilitate":["🛗","#db2777"],"Parcare":["🚗","#0891b2"],"Spatii comune si constructie":["🧱","#ea580c"],"Avize si documente":["📄","#64748b"]};
   var CATC = {"Apa":"#0ea5e9","Asociatie":"#7c3aed","Gunoi":"#16a34a","Acces":"#2563eb","Lift":"#db2777","Parcare":"#0891b2","Securitate":"#475569","Utilitati":"#f59e0b","Comunicare":"#e11d48","Spatii comune":"#ea580c"};
   var MONTHS = ["Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie"];
-  var n = 0;
+  var n = 0, LASTD = null;
 
   function q(sheet, range){
     return new Promise(function(res, rej){
@@ -464,7 +477,7 @@ a.doc:hover{border-color:#c7d2fe;transform:translateY(-2px);box-shadow:var(--sh)
       probleme:["Problemele blocului, <span>pe teme</span>","Fiecare problema, cu statusul, prioritatea, ultimul pas si urmatorul pas."],
       istoric:["Istoricul <span>blocului</span>","Tot ce s-a intamplat, de la crearea grupului pana azi."],
       documente:["Documentele <span>blocului</span>","Autorizatii, receptie, bransament, modele de cereri si tot ce tine de asociatie, intr-un singur loc."]}[v];
-    $("h-title").innerHTML = T[0]; $("h-lead").textContent = T[1];
+    document.body.classList.toggle("home", v === "acasa"); $("h-title").innerHTML = T[0]; $("h-lead").textContent = T[1];
     try { history.replaceState(null, "", "#" + v); } catch(e) {}
   }
   document.addEventListener("click", function(e){
@@ -481,6 +494,7 @@ a.doc:hover{border-color:#c7d2fe;transform:translateY(-2px);box-shadow:var(--sh)
     var H = d[4].filter(function(r){ return r[2] !== ""; });
     $("loading").classList.add("hide");
     var last = H.map(function(h){ return parseD(h[0]); }).filter(Boolean).sort(function(a,b){ return b-a; })[0];
+    LASTD = last;
     if (last) $("h-upd").textContent = "Actualizat " + fmt(last);
     home(P, S, A, H); bran(S, A, B); probs(P); hist(H); docs(d[5].filter(function(r){ return r[1] !== ""; }));
     var h = (location.hash || "").slice(1); show(VIEWS.indexOf(h) >= 0 ? h : "acasa");
@@ -535,11 +549,11 @@ a.doc:hover{border-color:#c7d2fe;transform:translateY(-2px);box-shadow:var(--sh)
       return '<div class="r" data-go="probleme" data-theme="'+esc(k)+'"><span class="t">'+c[0]+' '+esc(k)+'</span><div class="track"><i style="width:0;background:'+c[1]+'" data-w="'+(th[k].n*100/mx2)+'"></i></div><span class="n">'+th[k].n+'</span></div>'; }).join("");
     setTimeout(function(){ Array.prototype.forEach.call(document.querySelectorAll("[data-w]"), function(i){ i.style.width = i.dataset.w + "%"; }); }, 120);
     // news
-    var srt = H.slice().sort(function(a,b){ return (parseD(b[0])||0) - (parseD(a[0])||0); }).slice(0,6);
+    var srt = H.slice().sort(function(a,b){ return (parseD(b[0])||0) - (parseD(a[0])||0); }).slice(0,7);
     $("home-tl").innerHTML = srt.map(tlItem).join("");
     var wip = P.filter(function(p){ return p[1] === "IN_LUCRU"; }).sort(function(a,b){ return (PR_ORDER[a[14]]||1) - (PR_ORDER[b[14]]||1); });
     $("home-wip").innerHTML = wip.map(function(p){
-      return '<div style="padding:12px 0;border-bottom:1px solid var(--line)"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><b style="font-size:14px">'+esc(p[2])+'</b>'+prio(p[14])+'</div><div class="muted" style="font-size:13px;margin-top:2px">&rarr; '+esc(p[11]||p[10]||"")+'</div></div>';
+      return '<div style="padding:10px 0;border-bottom:1px solid var(--line)"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><b style="font-size:14px">'+esc(p[2])+'</b>'+prio(p[14])+'</div><div class="muted" style="font-size:13px;margin-top:2px">&rarr; '+esc(p[11]||p[10]||"")+'</div></div>';
     }).join("") || '<div class="muted">Nimic in lucru momentan.</div>';
   }
   document.addEventListener("click", function(e){ var t = e.target.closest("[data-theme]"); if (t){ PS.theme = t.dataset.theme; drawThemes(); drawProbs(); } });
@@ -679,6 +693,8 @@ a.doc:hover{border-color:#c7d2fe;transform:translateY(-2px);box-shadow:var(--sh)
     $("doc-cat").addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return; DF.c = b.dataset.c; seg(this, b); drawDocs(); });
     $("doc-q").addEventListener("input", function(){ DF.q = this.value.toLowerCase(); drawDocs(); });
     drawDocs();
+    var hd = D.filter(function(d){ return /^https?:\/\//.test(d[4]||""); }).slice(0,5);
+    $("home-docs").innerHTML = hd.map(function(d){ var c = DC[d[2]] || DC.Altele; return '<a href="'+esc(d[4])+'" target="_blank" rel="noopener"><span class="e">'+c[0]+'</span>'+esc(d[1])+'<span class="x">Deschide</span></a>'; }).join("") || '<div class="muted">In curand.</div>';
   }
   function drawDocs(){
     var list = DOCS.filter(function(d){ return (!DF.c || (d[2]||"Altele") === DF.c) && (!DF.q || d.join(" ").toLowerCase().indexOf(DF.q) >= 0); })
@@ -693,6 +709,7 @@ a.doc:hover{border-color:#c7d2fe;transform:translateY(-2px);box-shadow:var(--sh)
   var WD = ["Dum","Lun","Mar","Mie","Joi","Vin","Sam"];
   function tlItem(h){
     var d = parseD(h[0]), c = CATC[h[1]] || "#64748b";
+    var isNew = d && LASTD && (LASTD - d) < 2*864e5;
     return '<li><div class="dt">'+esc((h[0]||"").slice(0,5))+(d?'<small>'+WD[d.getDay()]+'</small>':"")+'</div><span class="pt" style="background:'+c+'"></span><div><div class="cat" style="color:'+c+'">'+esc(h[1])+'</div><div class="ev">'+esc(h[2])+'</div>'+(h[4]?'<div class="lnk">Legat de: '+esc(h[4])+'</div>':"")+'</div></li>';
   }
 })();
