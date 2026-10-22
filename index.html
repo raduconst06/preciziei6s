@@ -451,7 +451,7 @@ body.home .hero .wrap{min-height:150px}
       document.body.appendChild(s);
     });
   }
-  function rows(t){ return (t.rows || []).map(function(r){ return (r.c || []).map(function(c){ return !c ? "" : c.f != null ? String(c.f) : c.v == null ? "" : String(c.v); }); }); }
+  function rows(t){ return (t.rows || []).map(function(r){ return (r.c || []).map(function(c){ return !c ? "" : c.f != null ? String(c.f).replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, "$1.$2.$3") : c.v == null ? "" : String(c.v); }); }); }
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   function $(id){ return document.getElementById(id); }
   function chip(s){ return '<span class="chip s-' + esc(s) + '">' + esc(L[s] || s) + "</span>"; }
