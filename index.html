@@ -447,7 +447,7 @@ body.home .hero .wrap{min-height:150px}
       var cb = "__g" + (n++), s = document.createElement("script");
       window[cb] = function(r){ delete window[cb]; s.remove(); r.status === "error" ? rej(r) : res(rows(r.table)); };
       s.onerror = function(){ rej(new Error("load")); };
-      s.src = "https://docs.google.com/spreadsheets/d/" + ID + "/gviz/tq?tqx=responseHandler:" + cb + "&headers=0&sheet=" + encodeURIComponent(sheet) + "&range=" + range;
+      s.src = "https://docs.google.com/spreadsheets/d/" + ID + "/gviz/tq?tqx=responseHandler:" + cb + "&headers=0&sheet=" + encodeURIComponent(sheet) + "&range=" + range + "&_=" + Date.now();
       document.body.appendChild(s);
     });
   }
